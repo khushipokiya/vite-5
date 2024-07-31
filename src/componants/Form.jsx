@@ -48,7 +48,7 @@ const CrudForm = ({ items, onAdd, onEdit, editingIndex, onDelete }) => {
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           />
           {formik.touched.name && formik.errors.name ? (
-            <div className="text-red-500 text-sm">{formik.errors.name}</div>
+            <div className="text-red-500  text-sm">{formik.errors.name}</div>
           ) : null}
         </div>
 

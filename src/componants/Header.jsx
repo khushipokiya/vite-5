@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Header = ({ toggleSidebar }) => {
   return (
     <header className="bg-gray-900 text-white shadow-md">
-      <div className="container mx-auto flex justify-between items-center p-4">
+      <div className="container mx-auto flex justify-between items-center p-4 z-40">
         <h1 className="text-3xl font-bold">
           CRUD App
         </h1>
