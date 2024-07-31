@@ -6,6 +6,16 @@ const validate = (values) => {
   if (!values.name) {
     errors.name = 'Name is required';
   }
+  if (!values.email) {
+    errors.email = 'Email is required';
+  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+    errors.email = 'Email address is invalid';
+  }
+  if (!values.contactNumber) {
+    errors.contactNumber = 'Contact number is required';
+  } else if (!/^\d{10}$/.test(values.contactNumber)) {
+    errors.contactNumber = 'Contact number must be 10 digits';
+  }
   if (!values.description) {
     errors.description = 'Description is required';
   }
@@ -16,6 +26,8 @@ const CrudForm = ({ items, onAdd, onEdit, editingIndex, onDelete }) => {
   const formik = useFormik({
     initialValues: {
       name: '',
+      email: '',
+      contactNumber: '',
       description: '',
     },
     validate,
@@ -35,8 +47,8 @@ const CrudForm = ({ items, onAdd, onEdit, editingIndex, onDelete }) => {
 
       <form onSubmit={formik.handleSubmit} className="mb-4">
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-            Name
+          <label htmlFor="name" className="block text-lg font-large text-gray-700">
+            Full Name
           </label>
           <input
             id="name"
@@ -45,15 +57,54 @@ const CrudForm = ({ items, onAdd, onEdit, editingIndex, onDelete }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.name}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-3 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            placeholder="Enter your full name"
           />
           {formik.touched.name && formik.errors.name ? (
-            <div className="text-red-500  text-sm">{formik.errors.name}</div>
+            <div className="text-red-500 text-lg">{formik.errors.name}</div>
           ) : null}
         </div>
 
         <div className="mb-4">
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="email" className="block text-lg font-medium text-gray-700">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-3 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            placeholder="Enter your email address"
+          />
+          {formik.touched.email && formik.errors.email ? (
+            <div className="text-red-500 text-lg">{formik.errors.email}</div>
+          ) : null}
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="contactNumber" className="block text-lg font-medium text-gray-700">
+            Contact Number
+          </label>
+          <input
+            id="contactNumber"
+            name="contactNumber"
+            type="text"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.contactNumber}
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-3 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            placeholder="Enter your contact number"
+          />
+          {formik.touched.contactNumber && formik.errors.contactNumber ? (
+            <div className="text-red-500 text-lg">{formik.errors.contactNumber}</div>
+          ) : null}
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-lg font-medium text-gray-700">
             Description
           </label>
           <textarea
@@ -62,10 +113,12 @@ const CrudForm = ({ items, onAdd, onEdit, editingIndex, onDelete }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.description}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-3 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            rows="4"
+            placeholder="Enter a description"
           />
           {formik.touched.description && formik.errors.description ? (
-            <div className="text-red-500 text-sm">{formik.errors.description}</div>
+            <div className="text-red-500 text-lg">{formik.errors.description}</div>
           ) : null}
         </div>
 
@@ -81,17 +134,17 @@ const CrudForm = ({ items, onAdd, onEdit, editingIndex, onDelete }) => {
         {items.map((item, index) => (
           <li key={index} className="mb-2 flex items-center">
             <div className="mr-4">
-              <strong>{item.name}:</strong> {item.description}
+              <strong>{item.name}:</strong> {item.description} | {item.email} | {item.contactNumber}
             </div>
             <button
               onClick={() => onEdit(item, index)}
-              className="bg-red-500 text-white hover:bg-red-600  rounded-lg px-4 py-2 transition-colors duration-300 mr-2"
+              className="bg-yellow-500 text-white hover:bg-yellow-600 rounded-lg px-4 py-2 transition-colors duration-300 mr-2"
             >
               Edit
             </button>
             <button
               onClick={() => onDelete(index)}
-              className="bg-red-500 text-white hover:bg-red-600  rounded-lg px-4 py-2 transition-colors duration-300"
+              className="bg-red-500 text-white hover:bg-red-600 rounded-lg px-4 py-2 transition-colors duration-300"
             >
               Delete
             </button>
