@@ -85,13 +85,13 @@ const CrudForm = ({ items, onAdd, onEdit, editingIndex, onDelete }) => {
             </div>
             <button
               onClick={() => onEdit(item, index)}
-              className="mr-2 text-blue-500 hover:text-blue-700"
+              className="bg-red-500 text-white hover:bg-red-600  rounded-lg px-4 py-2 transition-colors duration-300 mr-2"
             >
               Edit
             </button>
             <button
               onClick={() => onDelete(index)}
-              className="text-red-500 hover:text-red-700"
+              className="bg-red-500 text-white hover:bg-red-600  rounded-lg px-4 py-2 transition-colors duration-300"
             >
               Delete
             </button>

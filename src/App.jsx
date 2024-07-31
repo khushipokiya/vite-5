@@ -37,28 +37,28 @@ const App = () => {
 
   return (
     <Router>
-    <div className="flex h-screen bg-gray-100">
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className="flex h-screen bg-gray-100">
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
-      <div className="flex-1 flex flex-col">
-        <Header toggleSidebar={toggleSidebar} />
-        <main className="flex-1 p-4">
-        <Routes>
-              <Route path="/" element={<h1>Welcome to the Home Page</h1>} />
-              <Route path="/view" element={<ViewPage/>} />
-              <Route path="/add" element={<AddPage/>} />
+        <div className="flex-1 flex flex-col">
+          <Header toggleSidebar={toggleSidebar} />
+          <main className="flex-1 p-4">
+            <Routes>
+              <Route path="/" element={<CrudForm
+              items={items}
+              onAdd={handleAdd}
+              onEdit={handleEdit}
+              editingIndex={editingIndex}
+              onDelete={handleDelete}
+            />} />
+              <Route path="/view" element={<ViewPage />} />
+              <Route path="/add" element={<AddPage />} />
             </Routes>
-          <CrudForm
-            items={items}
-            onAdd={handleAdd}
-            onEdit={handleEdit}
-            editingIndex={editingIndex}
-            onDelete={handleDelete}
-          />
-        </main>
-        <Footer/>
+            
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
     </Router>
   );
 };
