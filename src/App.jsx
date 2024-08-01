@@ -43,17 +43,39 @@ const App = () => {
           <Header toggleSidebar={toggleSidebar} />
           <main className="flex-1 p-4">
             <Routes>
-              <Route path="/" element={<CrudForm
-              items={items}
-              onAdd={handleAdd}
-              onEdit={handleEdit}
-              editingIndex={editingIndex}
-              onDelete={handleDelete}
-            />} />
-              <Route path="/view" element={<ViewPage />} />
-              <Route path="/add" element={<AddPage />} />
+              <Route
+                path="/"
+                element={
+                  <CrudForm
+                    items={items}
+                    onAdd={handleAdd}
+                    onEdit={handleEdit}
+                    editingIndex={editingIndex}
+                    onDelete={handleDelete}
+                  />
+                }
+              />
+              <Route
+                path="/view"
+                element={
+                  <ViewPage
+                    items={items}
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                  />
+                }
+              />
+              <Route
+                path="/add"
+                element={
+                  <AddPage
+                    onAdd={handleAdd}
+                    editingIndex={editingIndex}
+                    onEdit={handleEdit}
+                  />
+                }
+              />
             </Routes>
-            
           </main>
           <Footer />
         </div>

@@ -1,10 +1,17 @@
 import React from 'react';
+import CrudForm from '../componants/Form'; // Update path if necessary
 
-const AddPage = () => {
+const AddPage = ({ onAdd, editingIndex, onEdit }) => {
   return (
-    <div>
-      <h1>Add Page</h1>
-      <p>Here you can add new items.</p>
+    <div className="p-4">
+      <h1 className="text-2xl font-semibold mb-4">Add Entry</h1>
+      <CrudForm
+        items={[]}
+        onAdd={onAdd}
+        onEdit={onEdit}
+        editingIndex={editingIndex}
+        onDelete={() => {}} // onDelete is not needed here
+      />
     </div>
   );
 };
