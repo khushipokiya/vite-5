@@ -31,6 +31,7 @@ const CrudForm = ({ items, onAdd, onEdit, editingIndex, onDelete }) => {
       description: '',
     },
     validate,
+    enableReinitialize: true,
     onSubmit: (values) => {
       if (editingIndex !== null) {
         onEdit(values, editingIndex);
@@ -40,6 +41,8 @@ const CrudForm = ({ items, onAdd, onEdit, editingIndex, onDelete }) => {
       formik.resetForm();
     },
   });
+
+ 
 
   return (
     <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">

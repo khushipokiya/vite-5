@@ -16,6 +16,12 @@ const App = () => {
     setItems([...items, item]);
   };
 
+  //   const handleEdit = (item, index) => {
+  //   // This sets the form to the item to be edited and highlights the correct item
+  //   setEditingIndex(index);
+  //   formik.setValues(item); // Assuming formik is in the parent component or accessible
+  // };
+
   const handleEdit = (item, index) => {
     const updatedItems = [...items];
     updatedItems[index] = item;
