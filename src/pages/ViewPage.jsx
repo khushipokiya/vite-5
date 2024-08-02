@@ -9,7 +9,7 @@ const ViewPage = () => {
 
   const handleEdit = (item) => {
     selectItem(item);
-    navigate('/add'); // Redirect to the add page to edit
+    navigate('/add'); 
   };
 
   const handleDelete = (id) => {

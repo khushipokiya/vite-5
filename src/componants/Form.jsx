@@ -1,7 +1,7 @@
   // src/components/Form.jsx
   import React, { useContext, useEffect } from 'react';
   import { useFormik } from 'formik';
-  import { AppContext } from '../Appcontext';  // Ensure this path is correct
+  import { AppContext } from '../Appcontext'; 
 
   const validate = values => {
     const errors = {};

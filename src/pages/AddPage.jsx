@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from '../componants/Form'; // Update path if necessary
+import Form from '../componants/Form'; 
 
 const AddPage = () => {
   return (
