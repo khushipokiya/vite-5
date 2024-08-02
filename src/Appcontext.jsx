@@ -1,10 +1,10 @@
-// src/AppContext.jsx
+
 import React, { createContext, useState, useContext } from 'react';
 
-// Create context
+
 const AppContext = createContext();
 
-// Context provider component
+
 const AppProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
@@ -37,7 +37,7 @@ const AppProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use context
+
 const useAppContext = () => useContext(AppContext);
 
 export { AppProvider, useAppContext , AppContext};
