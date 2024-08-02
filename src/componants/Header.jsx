@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = ({ toggleSidebar }) => {
+const Header1 = ({ toggleSidebar }) => {
   return (
     <header className="bg-gray-900 text-white shadow-md">
       <div className="container mx-auto flex justify-between items-center p-4 z-40">
@@ -33,4 +34,4 @@ const Header = ({ toggleSidebar }) => {
   );
 };
 
-export default Header;
+export default Header1;

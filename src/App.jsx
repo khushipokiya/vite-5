@@ -1,92 +1,44 @@
-import React, { useState } from 'react';
-import CrudForm from './componants/Form';
-import Header from './componants/Header';
-import Sidebar from './componants/Sidebar1';
+// src/App.jsx
+import React,{useState} from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AppProvider } from './Appcontext';
 import ViewPage from './pages/ViewPage';
 import AddPage from './pages/AddPage';
+
+
+import Sidebar from './componants/Sidebar1';
+import Form from './componants/Form';
+import Header1 from './componants/Header';
 import Footer from './componants/Footer';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const App = () => {
-  const [items, setItems] = useState([]);
-  const [editingIndex, setEditingIndex] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const handleAdd = (item) => {
-    setItems([...items, item]);
-  };
-
-  //   const handleEdit = (item, index) => {
-  //   // This sets the form to the item to be edited and highlights the correct item
-  //   setEditingIndex(index);
-  //   formik.setValues(item); // Assuming formik is in the parent component or accessible
-  // };
-
-  const handleEdit = (item, index) => {
-    const updatedItems = [...items];
-    updatedItems[index] = item;
-    setItems(updatedItems);
-    setEditingIndex(null);
-  };
-
-  const handleDelete = (index) => {
-    setItems(items.filter((_, i) => i !== index));
-    if (editingIndex === index) {
-      setEditingIndex(null);
-    }
-  };
-
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
-    <Router>
-      <div className="flex h-screen bg-gray-100">
-        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-
-        <div className="flex-1 flex flex-col">
-          <Header toggleSidebar={toggleSidebar} />
-          <main className="flex-1 p-4">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <CrudForm
-                    items={items}
-                    onAdd={handleAdd}
-                    onEdit={handleEdit}
-                    editingIndex={editingIndex}
-                    onDelete={handleDelete}
-                  />
-                }
-              />
-              <Route
-                path="/view"
-                element={
-                  <ViewPage
-                    items={items}
-                    onEdit={handleEdit}
-                    onDelete={handleDelete}
-                  />
-                }
-              />
-              <Route
-                path="/add"
-                element={
-                  <AddPage
-                    onAdd={handleAdd}
-                    editingIndex={editingIndex}
-                    onEdit={handleEdit}
-                  />
-                }
-              />
-            </Routes>
-          </main>
+    <AppProvider>
+      <Router>
+        <div className="flex h-screen bg-gray-100">
+          <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+         
+          <div className="flex-1 flex flex-col">
+          <Header1 toggleSidebar={toggleSidebar} />
+              <main className="flex-1 p-6 bg-gray-100">
+                <Routes>
+                  <Route path="/" element={<Form />} />
+                  <Route path="/add" element={<AddPage />} />
+                  <Route path="/view" element={<ViewPage />} />
+                 
+                </Routes>
+              </main>
           <Footer />
-        </div>
-      </div>
-    </Router>
+            </div>
+       <div/>
+          </div>
+      </Router>
+    </AppProvider>
   );
 };
 
